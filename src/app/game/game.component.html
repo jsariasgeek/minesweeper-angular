@@ -48,8 +48,9 @@
                 </select>
             </div>
           </div>
-          <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+          <button type="button" class="btn btn-primary" (click)="startGame()" *ngIf="!gameIsRunning">Start The Game</button> <span *ngIf="gameIsRunning">Your Time: {{counter}}</span>
         </form>
+        <br>
       <table>
         <tbody>
           <tr *ngFor="let row of rows; let ir = index;">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -14,6 +15,13 @@ export class GameComponent implements OnInit {
   rows = Array(this.numRows);
   cols = Array(this.numCols);
 
+
+  //counter for game
+  counter;
+
+  //check if game is running
+  gameIsRunning:boolean = false;
+
   constructor() { }
 
   ngOnInit() {
@@ -25,6 +33,18 @@ export class GameComponent implements OnInit {
 
   setCols(){
     this.cols = Array(this.numCols);
+  }
+
+  startTimer(){
+    const source = timer(0, 1000)
+    const suscribe = source.subscribe(val => this.counter = val)
+  }
+
+  startGame(){
+    if(!this.gameIsRunning){
+      this.startTimer();
+      this.gameIsRunning = true;
+    }
   }
 
 
