@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import { timer, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -17,6 +17,8 @@ export class GameComponent implements OnInit {
 
 
   //counter for game
+  subscription:Subscription;
+  source;
   counter;
 
   //check if game is running
@@ -36,14 +38,21 @@ export class GameComponent implements OnInit {
   }
 
   startTimer(){
-    const source = timer(0, 1000)
-    const suscribe = source.subscribe(val => this.counter = val)
+    const source = timer(0,1000);
+    this.subscription = source.subscribe(val => this.counter = val);
   }
 
-  startGame(){
+  resetTimer(){
+    this.subscription.unsubscribe();
+  }
+
+  startOrStopGame(){
     if(!this.gameIsRunning){
       this.startTimer();
       this.gameIsRunning = true;
+    }else{
+      this.gameIsRunning = false;
+      this.resetTimer();
     }
   }
 

@@ -7,7 +7,8 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="inputCity">Rows</label>
-              <select id="inputState" class="form-control" [(ngModel)]="numRows" name="numRows" (change)="setRows()">
+              <select id="inputState" class="form-control" [(ngModel)]="numRows" name="numRows"
+              (change)="setRows()" [disabled]="gameIsRunning">
                   <option [ngValue]="1">1</option>
                   <option [ngValue]="2">2</option>
                   <option [ngValue]="3">3</option>
@@ -21,7 +22,8 @@
             </div>
             <div class="form-group col-md-4">
               <label for="inputState">Cols</label>
-              <select id="inputState" class="form-control" [(ngModel)]="numCols" name="numCols" (change)="setCols()">
+              <select id="inputState" class="form-control" [(ngModel)]="numCols"
+              name="numCols" (change)="setCols()" [disabled]="gameIsRunning">
                   <option [ngValue]="1">1</option>
                   <option [ngValue]="2">2</option>
                   <option [ngValue]="3">3</option>
@@ -35,7 +37,8 @@
             </div>
             <div class="form-group col-md-4">
               <label for="inputZip">Mines</label>
-              <select id="inputState" class="form-control" [(ngModel)]="numMines" name="numMines">
+              <select id="inputState" class="form-control" [(ngModel)]="numMines" name="numMines"
+              [disabled]="gameIsRunning">
                   <option [ngValue]="1">1</option>
                   <option [ngValue]="2">2</option>
                   <option [ngValue]="3">3</option>
@@ -48,7 +51,7 @@
                 </select>
             </div>
           </div>
-          <button type="button" class="btn btn-primary" (click)="startGame()" *ngIf="!gameIsRunning">Start The Game</button> <span *ngIf="gameIsRunning">Your Time: {{counter}}</span>
+          <button type="button" class="btn" (click)="startOrStopGame()" [ngClass]="gameIsRunning? 'btn-danger': 'btn-primary'"><span *ngIf="!gameIsRunning">Start The Game</span><span *ngIf="gameIsRunning">Stop The Game</span></button> <span *ngIf="gameIsRunning"> | Your Time: {{counter}}</span>
         </form>
         <br>
       <table>
