@@ -1,14 +1,63 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h1>Bienvenido A GameSweeper</h1>
+    <div class="col-md-6">
+      <h1>Welcome to MineSweeper</h1>
+      <p> For beginning, set the Game's Parameters</p>
+      <form>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputCity">Rows</label>
+              <select id="inputState" class="form-control" [(ngModel)]="numRows" name="numRows" (change)="setRows()">
+                  <option [ngValue]="1">1</option>
+                  <option [ngValue]="2">2</option>
+                  <option [ngValue]="3">3</option>
+                  <option [ngValue]="4">4</option>
+                  <option [ngValue]="5">5</option>
+                  <option [ngValue]="6">6</option>
+                  <option [ngValue]="7">7</option>
+                  <option [ngValue]="8">8</option>
+                  <option [ngValue]="9">9</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">Cols</label>
+              <select id="inputState" class="form-control" [(ngModel)]="numCols" name="numCols" (change)="setCols()">
+                  <option [ngValue]="1">1</option>
+                  <option [ngValue]="2">2</option>
+                  <option [ngValue]="3">3</option>
+                  <option [ngValue]="4">4</option>
+                  <option [ngValue]="5">5</option>
+                  <option [ngValue]="6">6</option>
+                  <option [ngValue]="7">7</option>
+                  <option [ngValue]="8">8</option>
+                  <option [ngValue]="9">9</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputZip">Mines</label>
+              <select id="inputState" class="form-control" [(ngModel)]="numMines" name="numMines">
+                  <option [ngValue]="1">1</option>
+                  <option [ngValue]="2">2</option>
+                  <option [ngValue]="3">3</option>
+                  <option [ngValue]="4">4</option>
+                  <option [ngValue]="5">5</option>
+                  <option [ngValue]="6">6</option>
+                  <option [ngValue]="7">7</option>
+                  <option [ngValue]="8">8</option>
+                  <option [ngValue]="9">9</option>
+                </select>
+            </div>
+          </div>
+          <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+        </form>
       <table>
         <tbody>
-          <tr *ngFor="let row of rows">
-            <td *ngFor="let col of cols">X</td>
+          <tr *ngFor="let row of rows; let ir = index;">
+            <td *ngFor="let col of cols;let ic=index;" (click)="exposeCell()">X{{ir}}{{ic}}</td>
           </tr>
         </tbody>
       </table>
     </div>
+    <div class="col-md-6"></div>
   </div>
 </div>
